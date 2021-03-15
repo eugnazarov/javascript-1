@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 6</title>
+</head>
+<body>
+<script>
+    "use strict";
+
+    function GetSum(amount){
+
+        if (isNaN(amount) || amount <= 0){
+            throw new Error("Введенные данные некорректны");
+        }
+
+        let currencyForm = "рублей";
+        let userInput = amount;
+
+        amount = Math.abs(amount) % 100;
+        let newAmount = amount % 10;
+        if (amount > 10 && amount < 20) currencyForm = "рублей";
+        if (newAmount > 1 && newAmount < 5) currencyForm =  "рубля";
+        if (newAmount === 1) currencyForm =  "рубль";
+        if (newAmount === 0) currencyForm =  "рублей";
+        let text = `На вашем счету ${userInput} ${currencyForm}`;
+        alert(text);
+
+
+    }
+
+    let userAmount = prompt("Введите сумму");
+    GetSum(userAmount);
+
+
+
+
+
+</script>
+</body>
+</html>

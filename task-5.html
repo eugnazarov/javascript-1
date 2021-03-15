@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 5</title>
+</head>
+<body>
+<script>
+    "use strict";
+    /*
+    Сложение
+     */
+    const Sum = (a,b) => {
+        return a+b;
+    }
+
+    /*
+    Вычитание
+     */
+    const Subtract = (a,b) => {
+        return a-b;
+    }
+
+    /*
+    Умножение
+     */
+    const Multiply = (a,b) => {
+        return a*b;
+    }
+
+    /*
+    Деление
+     */
+    const Divide = (a,b) => {
+        //Вводим дополнительную проверку на ноль
+        if(b === 0){
+            return "На ноль деление невозможно";
+        }
+        return a/b;
+    }
+
+    const mathOperation = (arg1, arg2, operation) =>{
+        //Изабвляемся от регистрозависимости
+        operation = operation.toLowerCase();
+        //Если введены не числа, то
+        if(isNaN(arg1) || isNaN(arg2)){
+            //Уведомляем  об ошибке
+
+            return "Введенные числа некорректны";
+        }
+        //Приводим строки к типу числа
+        arg1 = +arg1;
+        arg2 = +arg2;
+        switch (operation){
+            case "сложение":{
+                return Sum(arg1,arg2);
+            }
+            case "вычитание":{
+                return Subtract(arg1,arg2);
+            }
+            case "умножение":{
+                return Multiply(arg1,arg2);
+            }
+            case "деление":{
+
+                return Divide(arg1,arg2);
+            }
+            //В случае если введеный тип операции не найден
+            default:{
+                return "Искомая операция не найдена.";
+            }
+        }
+    }
+
+    //Test
+    let arg1 = prompt("Введите первое число");
+    let arg2 = prompt("Введите второе число");
+    let kind = prompt("Введите название операции");
+
+    alert(mathOperation(arg1,arg2, kind));
+
+</script>
+</body>
+</html>
