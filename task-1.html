@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 1</title>
+</head>
+<body>
+<script>
+    "use script";
+
+    const numberToObject = number => {
+        if(!Number.isInteger(number) || (number < 0 || number > 999) ){
+            return {};
+        }
+        let obj= {};
+        obj.units = number % 10;
+        obj.tens = Math.floor(number / 10) % 10 ;
+        obj.hundreds = Math.floor(number / 100);
+        return obj;
+    }
+
+    console.log(numberToObject(459));
+
+
+</script>
+</body>
+</html>
