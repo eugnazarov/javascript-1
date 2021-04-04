@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+
+<div class="board" style="border: 1px solid black">
+
+</div>
+
+
+<script>
+
+    "use strict";
+
+
+    //Creates visual and pushes ceil to map array
+    const createCeil = (color, posX, posY) => {
+
+        //Get board
+        let board = document.querySelector(".board");
+
+        //Define board ceil
+        let ceil = `<div id="${posX}${posY}" style="width:50px; height:50px; background-color: ${color}">`
+
+        //Create visual
+        board.insertAdjacentHTML("afterbegin", ceil)
+
+        //Add to map
+        map.push({
+            posX,
+            posY,
+        })
+    }
+
+    //Place figure on ceil depending on it's position
+    const placeFigure = (ceil) => {
+
+        let tile = document.getElementById(`${ceil.posX}${ceil.posY}`)
+        let figure = ""
+        let figureColor = "black"
+        if (ceil.posX === 2 || ceil.posX === 7) {
+            figure = "<i class=\"fas fa-chess-pawn\"></i>"
+        }
+
+        if (ceil.posX <= 2) {
+            figureColor = "white"
+        }
+
+        if (ceil.posX === 1 || ceil.posX === 8) {
+
+
+            if (ceil.posY === 1 || ceil.posY === 8) {
+                figure = "<i class=\"fas fa-chess-rook\"></i>"
+            }
+            if (ceil.posY === 2 || ceil.posY === 7) {
+                figure = "<i class=\"fas fa-chess-knight\"></i>"
+            }
+            if (ceil.posY === 3 || ceil.posY === 6) {
+                figure = "<i class=\"fas fa-chess-bishop\"></i>"
+            }
+            if (ceil.posY === 4) {
+                figure = "<i class=\"fas fa-chess-king\"></i>"
+            }
+            if (ceil.posY === 5) {
+                figure = "<i class=\"fas fa-chess-queen\"></i>"
+            }
+
+        }
+
+
+        tile.insertAdjacentHTML("afterbegin", `<p style=' cursor:pointer; color:${figureColor}; text-align: center;' >${figure}</p>`)
+
+
+    }
+
+
+    const map = []
+
+    //Generates board
+    const generateChessBoard = () => {
+        let color = ""
+
+        //rows
+        for (let i = 1; i <= 8; i++) {
+            //cols
+            for (let j = 1; j <= 8; j++) {
+
+                //If current row is even
+                if (i % 2 === 0) {
+                    if (j % 2 !== 0) {
+                        color = "#7a5000";
+                    }
+                    if (j % 2 === 0) {
+                        color = "#FFCF73";
+                    }
+                }
+
+                //If odd
+                if (i % 2 !== 0) {
+                    if (j % 2 !== 0) {
+                        color = "#FFCF73";
+                    }
+                    if (j % 2 === 0) {
+                        color = "#7a5000";
+                    }
+                }
+
+
+                createCeil(color, i, j);
+
+
+            }
+
+        }
+    }
+
+    generateChessBoard()
+    console.log(map)
+
+    for (const ceil of map) {
+        placeFigure(ceil)
+    }
+
+
+</script>
+</body>
+</html>
